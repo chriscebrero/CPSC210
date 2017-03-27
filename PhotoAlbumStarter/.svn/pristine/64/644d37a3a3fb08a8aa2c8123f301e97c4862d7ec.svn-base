@@ -1,0 +1,103 @@
+Task M2:
+1. if (oldName.equals(newName))
+            return false (true);
+The correct return should be false instead of true since the new name is the same to the old name.
+
+2. @Test
+   	public void testRenameTagWithPhotos() {
+   		Tag birthdayTag = aTagManager.findTag("birthday");
+   		photo1.addTag(birthdayTag);
+   		aTagManager.renameTag("birthday", "newBirthday");
+   		assertNull(aTagManager.findTag("birthday"));
+   		assertNotNull(aTagManager.findTag("newBirthday"));
+   		assertEquals(birthdayTag, aTagManager.findTag("newBirthday"));
+   		Set<Tag> tagsForPhoto = photo1.getTags();
+   		assertEquals(1, tagsForPhoto.size());
+   		Tag theTag = (Tag) tagsForPhoto.toArray()[0];
+   		assertEquals("newBirthday" ("birthday"), theTag.getName());
+   	}
+   	}
+   	The correct assertEquals output should be "newBirthday" instead of "birthday" since the Tag is set the same as photo1
+    So it will have the same same name tag as photo1 which is "newBirthday".
+
+Task M3:
+1.
+After:
+public Set<Photo> findPhotosInDateRange(Date start, Date end){
+   		Set<Photo> photos = new HashSet<Photo>();
+
+   		for(Photo photo: getPhotos()) {
+               Date dateCreated = photo.getDateCreated();
+   			if(!dateCreated.before(start) && !dateCreated.after(end))
+   				photos.add(photo);
+   		}
+
+   		return Collections.unmodifiableSet(photos);
+   	}
+
+Before:
+public Set<Photo> findPhotosInDateRange(Date start, Date end){
+   		Set<Photo> photos = new HashSet<Photo>();
+
+   		for(Photo photo: getPhotos()) {
+               Date dateCreated = photo.getDateCreated();
+   			if(!dateCreated.before(start) || !dateCreated.after(end))
+   				photos.add(photo);
+   		}
+
+   		return Collections.unmodifiableSet(photos);
+   	}
+   	For the method of findPhotosInDaternage, the connection between two conditions for if function should be && instead
+   	of || because the photo created neither before start nor after edn can be added to the set.
+
+Task M4:
+1.
+After:
+// MODIFIES: this
+// EFFECTS: flips the image horizontally
+       public void flipHorizontal() {
+           int width = image.getWidth();
+           int height = image.getHeight();
+
+           for (int x = 0; x < width / 2; x++) {
+               for (int y = 0; y < height; y++) {
+                   int temp = image.getRGB(x, y);
+                   image.setRGB(x, y, image.getRGB(width - 1 - x, y));
+                   image.setRGB(width - 1 - x, y, temp);
+               }
+           }
+       }
+}
+Before:
+// MODIFIES: this
+// EFFECTS: flips the image horizontally
+       public void flipHorizontal() {
+           int width = image.getWidth();
+           int height = image.getHeight();
+
+           for (int x = 0; x < width / 2; x++) {
+               for (int y = 0; y < height; y++) {
+                   image.setRGB(width - 1 - x, y, image.getRGB(width - 1 - x, y);
+                   image.setRGB(x, y, image.getRGB(width - 1 - x, y));
+               }
+           }
+       }
+}
+For the original function, the image.setRGB happens in order. As a result, the left part copies and paste the right part
+while the right part has nothing to do because it already changes. Therefore, a new temporary integer is used to save the
+RGB for the left part so that the right part is still able to copy and paste the right version.
+
+Task M5:
+1.
+After:
+private boolean isInBounds(int x, int y) {
+           return x >= 0 && x < image.getWidth() && y >= 0 && y < image.getHeight();
+       }
+
+Before:
+    private boolean isInBounds(int x, int y) {
+               return x > 0 && x < image.getWidth() && y > 0 && y < image.getHeight();
+           }
+
+The picture is defined as inside boundaries if x and y is bigger and equal to zero instead of only bigger than zero.
+That is because for the position of picture, it starts from (0,0) instead of (1,1).

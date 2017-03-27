@@ -1,0 +1,10 @@
+package ca.ubc.cs.cpsc210.integerset.test;
+
+import static org.junit.Assert.*;
+
+/**
+ * Unit tests for IntegerSet class
+ */
+public class IntegerSetTest {
+
+}

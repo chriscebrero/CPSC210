@@ -1,0 +1,19 @@
+package ca.ubc.cpsc210.pizza.model;
+
+// represents a topping on a pizza
+public abstract class Topping {
+    private int surcharge;
+
+    // EFFECTS: topping has given name, cost and the surcharge is zero
+    public Topping(String name, int cost) {
+        // TODO: implement constructor
+    }
+
+    @Override
+    public void setSurcharge(int surcharge) {
+        this.surcharge = surcharge;
+    }
+
+
+    // TODO: override getCost so that surcharge is added to basic cost
+}

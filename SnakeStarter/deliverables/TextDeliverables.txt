@@ -1,0 +1,59 @@
+1. For the first error testRotateRight, at the situation when the snake is facing UP. When the RotateRight is called, the
+final direction of the snake is UP instead of RIGHT. That is one bug for the Snake.
+
+The wrong code may be as shown below:
+public void rotateRight() {
+        switch(direction) {
+            case LEFT:
+                direction = Direction.UP;
+                break;
+            case RIGHT:
+                direction = Direction.DOWN;
+                break;
+            case UP:
+                direction = Direction.UP;
+                break;
+            case DOWN:
+                direction = Direction.LEFT;
+                break;
+        }
+    }
+
+The corresponding test may be shown below:
+@Test
+    public void testRotateRight() {
+        setSnakeDirection(testSnake, Direction.RIGHT);
+        testSnake.rotateRight();
+        assertEquals(Direction.DOWN, testSnake.getDirection());
+        testSnake.rotateRight();
+        assertEquals(Direction.LEFT, testSnake.getDirection());
+        testSnake.rotateRight();
+        assertEquals(Direction.UP, testSnake.getDirection());
+        testSnake.rotateRight();
+        assertEquals(Direction.UP, testSnake.getDirection());
+    }
+
+2. For the second error testGrowOnFeed, when the snake eats two full nutritive food at the same time, after moving,
+the snake can only grow for one time instead of two times.
+
+The corresponding test may be shown below:
+@Test
+    public void testGrowOnFeed() {
+        Food food = new Food(testSnake.getPosition(), Snake.NUTRITION_TO_GROW);
+        Food food1 = new Food(testSnake.getPosition(), Snake.NUTRITION_TO_GROW);
+        testSnake.eat(food);
+        assertEquals(1, testSnake.length());
+        assertTrue(testSnake.canGrow());
+
+        testSnake.eat(food1);
+        assertEquals(1, testSnake.length());
+        assertTrue(testSnake.canGrow());
+
+        testSnake.move();
+        assertEquals(2, testSnake.length());
+        assertFalse(testSnake.canGrow());
+
+        testSnake.move();
+        assertEquals(2, testSnake.length());
+        assertFalse(testSnake.canGrow());
+    }

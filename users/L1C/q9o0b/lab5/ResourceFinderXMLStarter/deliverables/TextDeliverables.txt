@@ -1,0 +1,14 @@
+ <resource>
+        <name>Greater Vancouver Community Services Society</name>
+        <address>1212 W Broadway, Vancouver, BC V6H 3V1</address>
+        <location>
+            <lat>49.2633</lat>
+            <lon>-123.1316</lon>
+        </location>
+        <webaddress>http://www.gvcss.bc.ca/</webaddress>
+        <phone>604-737-4900</phone>
+        <services>
+            <service>Senior services</service>
+            <service>Shelter</service>
+        </services>
+    </resource>
