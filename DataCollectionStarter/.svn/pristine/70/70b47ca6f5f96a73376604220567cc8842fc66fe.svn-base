@@ -1,8 +1,0 @@
-package ca.ubc.cs.cpsc210.tests;
-
-import org.junit.Test;
-
-// Unit tests for DataCollection class
-public class DataCollectionTest {
-    //TODO: design tests for the DataCollection class
-}
