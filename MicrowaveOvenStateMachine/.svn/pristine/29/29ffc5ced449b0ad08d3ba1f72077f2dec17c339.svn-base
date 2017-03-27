@@ -1,0 +1,22 @@
+package ca.ubc.cs.cpsc210.microwave.tests;
+
+import ca.ubc.cs.cpsc210.microwave.model.MicrowaveOvenStateMachine;
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+// unit tests for MicrowaveOvenStateMachine
+public class MicrowaveOvenStateMachineTest {
+    private MicrowaveOvenStateMachine testOven;
+
+    @Before
+    public void runBefore() {
+        testOven = new MicrowaveOvenStateMachine();
+    }
+
+    @Test
+    public void testXXXXX() {
+
+    }
+}

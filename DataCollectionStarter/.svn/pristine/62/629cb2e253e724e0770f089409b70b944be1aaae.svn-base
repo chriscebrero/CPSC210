@@ -1,0 +1,8 @@
+package ca.ubc.cs.cpsc210.application;
+
+// simple application to illustrate use of DataCollection class
+public class Main {
+    public static void main(String[] args) {
+
+    }
+}

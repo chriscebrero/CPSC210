@@ -1,0 +1,71 @@
+package ca.ubc.cs.cpsc210.model;
+
+// Represents a car having an amount of gas in the tank (in litres), a trip distance (in kms)
+// and a total distance travelled (in kms).
+//
+// We assume that the car has a fixed gas consumption measured in litres per 100km and
+// a specified gas tank capacity.
+public class Car {
+    public static final int TANK_CAPACITY = 50;            // capacity of gas tank in litres
+    public static final double LITRES_PER_100KM = 10.0;    // gas consumption in litres per 100km
+    private double gasInTank;
+    private int totalDistanceTravelled;
+    private int tripDistance;
+
+    // EFFECTS: car has empty tank of gas, total distance driven is zero and trip distance is zero.
+    public Car() {
+        gasInTank = 0.0;
+        totalDistanceTravelled = 0;
+        tripDistance = 0;
+    }
+
+    // EFFECTS: returns number of litres of gas in tank
+    public double getGasInTank() {
+        return gasInTank;
+    }
+
+    // EFFECTS: returns total distance travelled in km
+    public int getTotalDistanceTravelled() {
+        return totalDistanceTravelled;
+    }
+
+    // EFFECTS: returns total distance travelled in kms since trip distance was last reset
+    public int getTripDistance() {
+        return tripDistance;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: resets trip distance to zero
+    public void resetTripDistance() {
+        tripDistance = 0;
+    }
+
+    // REQUIRES: amount > 0
+    // MODIFIES: this
+    // EFFECTS: adds amount litres of gas to tank; if there is insufficient space in tank to hold
+    // the given amount, any excess is assumed to overflow and not be added.
+    public void addGasToTank(double amount) {
+        gasInTank = gasInTank + amount;
+
+        if (gasInTank > TANK_CAPACITY) {
+            gasInTank = TANK_CAPACITY;
+        }
+    }
+
+    // EFFECTS: returns maximum distance (in kms) that car can be driven (rounded to nearest km)
+    // until gas tank is empty
+    public int getDistanceUntilEmpty() {
+        //TODO: replace stub
+        return (int) Math.round((1 / (LITRES_PER_100KM / 100 )) * gasInTank);
+    }
+
+    // REQUIRES: distanceToDrive > 0 AND distanceToDrive <= getDistanceUntilEmpty()
+    // MODIFIES: this
+    // EFFECTS: drives the car the specified distance in kms
+    public void drive(int distanceToDrive) {
+        //TODO: replace stub
+        tripDistance = tripDistance + distanceToDrive;
+        totalDistanceTravelled = totalDistanceTravelled + distanceToDrive;
+        gasInTank = gasInTank - (distanceToDrive * LITRES_PER_100KM / 100.0);
+    }
+}

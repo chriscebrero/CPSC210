@@ -1,0 +1,10 @@
+package ca.ubc.cpsc210.booleancollection.main;
+
+/**
+ * An essentially useless Main class, that just prints a boring message
+ */
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("This is not a very interesting message.");
+    }
+}
